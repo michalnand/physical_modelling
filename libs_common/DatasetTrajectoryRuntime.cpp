@@ -12,30 +12,16 @@ DatasetTrajectoryRuntime::DatasetTrajectoryRuntime(
 
     this->training_tensor           = &training_tensor_interface;
     this->testing_tensor            = &testing_tensor_interface;
+    this->training_count            = testing_tensor_interface.get_max_y_offset()*testing_tensor_interface.get_max_z_offset();
     this->testing_count             = testing_count;
+
 
     std::cout << "creating dataset\n";
 
-    /*
-    if (testing_count == 0)
-        create_testing_all(testing_tensor_interface);
-    else
-        create_testing(testing_tensor_interface, testing_count);
-    */
 
-    create_testing(testing_tensor_interface, 10);
-
-    training_count = testing_tensor_interface.get_max_y_offset()*testing_tensor_interface.get_max_z_offset();
-
-    auto item = get_random_training();
-
-
-    set_output_shape(Shape(1, 1, item.output.size()));
-
-    /*
-    training.resize(1);
-    print();
-    */
+    set_random_training_idx();
+    get_testing_input(0);
+    set_output_shape(Shape(1, 1, testing_item.output.size()));
 
     print();
 }
@@ -47,13 +33,18 @@ DatasetTrajectoryRuntime::~DatasetTrajectoryRuntime()
 
 unsigned int DatasetTrajectoryRuntime::get_training_count()
 {
-  return training_count;
+    return training_count;
 }
 
-sDatasetItem DatasetTrajectoryRuntime::get_random_training()
+unsigned int DatasetTrajectoryRuntime::get_testing_count()
+{
+    return testing_count;
+}
+
+
+void DatasetTrajectoryRuntime::set_random_training_idx()
 {
     bool created = false;
-
     while (created != true)
     {
         unsigned int y_offset = rand()%training_tensor->get_max_y_offset();        //random time step
@@ -65,47 +56,21 @@ sDatasetItem DatasetTrajectoryRuntime::get_random_training()
         }
     }
 
-    return training_tensor->get();
+    training_item = training_tensor->get();
 }
 
-void DatasetTrajectoryRuntime::create_testing(TensorInterface &tensor, unsigned int count)
+std::vector<float>& DatasetTrajectoryRuntime::get_training_input()
 {
-    while (count > 0)
-    {
-        unsigned int y_offset = rand()%tensor.get_max_y_offset();   //random time step
-        unsigned int z_offset = rand()%tensor.get_max_z_offset();   //random cell
-
-        if (tensor.create(y_offset, z_offset) == 0)
-        {
-            auto item = tensor.get();
-
-            add_testing(item.input, item.output);
-            count--;
-        }
-    }
+    return training_item.input;
 }
 
-
-void DatasetTrajectoryRuntime::create_testing_all(TensorInterface &tensor)
+std::vector<float>& DatasetTrajectoryRuntime::get_training_output()
 {
-    for (unsigned int y_offset = 0; y_offset < tensor.get_max_y_offset(); y_offset++)
-        for (unsigned int z_offset = 0; z_offset < tensor.get_max_z_offset(); z_offset++)
-            if (tensor.create(y_offset, z_offset) == 0)
-            {
-                auto item = tensor.get();
-                add_testing(item.input, item.output);
-            }
+    return training_item.output;
 }
 
-unsigned int DatasetTrajectoryRuntime::get_testing_count()
+std::vector<float>& DatasetTrajectoryRuntime::get_testing_input(unsigned int idx)
 {
-    return testing_count;
-}
-
-sDatasetItem DatasetTrajectoryRuntime::get_testing(unsigned int idx)
-{
-    (void)idx;
-
     bool created = false;
 
     while (created != true)
@@ -119,5 +84,11 @@ sDatasetItem DatasetTrajectoryRuntime::get_testing(unsigned int idx)
         }
     }
 
-    return testing_tensor->get();
+    testing_item = testing_tensor->get();
+    return testing_item.input;
+}
+
+std::vector<float>& DatasetTrajectoryRuntime::get_testing_output(unsigned int idx)
+{
+    return testing_item.output;
 }

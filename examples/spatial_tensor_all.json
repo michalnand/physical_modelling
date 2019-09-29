@@ -1,0 +1,21 @@
+{
+    "input columns"           : [0, 1, 2],
+    "output columns"          : [3, 4, 5],
+
+    "time window size"        : 8,
+    "time step size"          : 100,
+    "prediction step size"    : 800,
+
+    "use depth"               : true,
+    "use gaussian kernel"     : true,
+
+    "discretization x"        : 64,
+    "discretization y"        : 64,
+    "discretization z"        : 3,
+
+
+    "input data corruption"                   : 0.0,        "_comment" : "podiel trenovacich dat, ktore budu zasumene z int. 0,1",
+    "input data corruption noise level"       : 0.0,        "_comment" : "velkost zasumenia na poskodenych datach z int. 0,1; 1=uplne poskodenie",
+    "output data corruption"                  : 0.0,
+    "output data corruption noise level"      : 0.0
+}

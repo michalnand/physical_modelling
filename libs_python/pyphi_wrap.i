@@ -18,6 +18,7 @@
 
 
 %{
+
 #include <dat_load.h>
 #include <dats_load.h>
 
@@ -28,12 +29,6 @@
 #include <tensor_interface.h>
 #include <tensor_no_spatial.h>
 #include <tensor_spatial.h>
-
-/*
-#include <vtk.h>
-#include <vtk_cell.h>
-#include <vtk_cells.h>
-*/
 
 #include <dataset_interface.h>
 #include <DatasetVelocitySimple.h>
@@ -51,12 +46,8 @@
 
 #include <load_textures.h>
 #include <glvisualisation.h>
+
 %}
-
-
-
-
-
 
 
 
@@ -71,12 +62,6 @@
 %include <tensor_interface.h>
 %include <tensor_no_spatial.h>
 %include <tensor_spatial.h>
-
-/*
-%include <vtk.h>
-%include <vtk_cell.h>
-%include <vtk_cells.h>
-*/
 
 %include <dataset_interface.h>
 %include <DatasetVelocitySimple.h>

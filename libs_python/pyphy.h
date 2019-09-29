@@ -13,12 +13,6 @@
 #include <tensor_no_spatial.h>
 #include <tensor_spatial.h>
 
-/*
-#include <vtk.h>
-#include <vtk_cell.h>
-#include <vtk_cells.h>
-*/
-
 #include <dataset_interface.h>
 #include <DatasetVelocitySimple.h>
 #include <DatasetTrajectory.h>

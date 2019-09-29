@@ -26,6 +26,8 @@ unsigned int TrajectoryPrediction::process( std::string network_file_name,
 
   CNN nn(network_file_name, input_shape, output_shape);
 
+  nn.print();
+
   result.init(initial_conditions->width(), initial_conditions->height(), initial_conditions->depth());
   result.clear();
 

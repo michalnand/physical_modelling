@@ -16,18 +16,19 @@ class DatasetTrajectoryRuntime: public DatasetInterface
         virtual ~DatasetTrajectoryRuntime();
 
         unsigned int get_training_count();
-        sDatasetItem get_random_training();
-
-        sDatasetItem get_testing(unsigned int idx);
-
-
         unsigned int get_testing_count();
 
-    private:
-        void create_testing(TensorInterface &tensor, unsigned int count);
-        void create_testing_all(TensorInterface &tensor);
+
+        void set_random_training_idx();
+        std::vector<float>& get_training_input();
+        std::vector<float>& get_training_output();
+
+        std::vector<float>& get_testing_input(unsigned int idx);
+        std::vector<float>& get_testing_output(unsigned int idx);
 
     private:
+        sDatasetItem training_item, testing_item;
+
         unsigned int training_count;
         unsigned int testing_count;
         TensorInterface *training_tensor;

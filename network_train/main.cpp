@@ -10,8 +10,8 @@
 
 int main()
 {
-  DatsToMotionTensor training_dats_to_motion_tensor("training_dats.json", "motion_tensor.json");
-  DatsToMotionTensor testing_dats_to_motion_tensor("testing_dats.json", "motion_tensor.json", training_dats_to_motion_tensor.tensor());
+    DatsToMotionTensor training_dats_to_motion_tensor("training_dats.json", "motion_tensor.json");
+    DatsToMotionTensor testing_dats_to_motion_tensor("testing_dats.json", "motion_tensor.json", training_dats_to_motion_tensor.tensor());
 
 
   /*
@@ -82,22 +82,22 @@ int main()
     DatasetTrajectoryRuntime dataset(training_tensor, training_tensor, 10000);
 
     {
-      RegressionExperiment experiment(dataset, "experiment_8/");
+      RegressionExperiment experiment(dataset, "experiment_8/", "network_config.json");
       experiment.run();
     }
 
     {
-      RegressionExperiment experiment(dataset, "experiment_9/");
+      RegressionExperiment experiment(dataset, "experiment_9/", "network_config.json");
       experiment.run();
     }
 
     {
-      RegressionExperiment experiment(dataset, "experiment_10/");
+      RegressionExperiment experiment(dataset, "experiment_10/", "network_config.json");
       experiment.run();
     }
 
     {
-      RegressionExperiment experiment(dataset, "experiment_11/");
+      RegressionExperiment experiment(dataset, "experiment_11/", "network_config.json");
       experiment.run();
     }
   }

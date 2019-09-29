@@ -1,0 +1,20 @@
+rm *.log
+rm *.png
+
+cd trained
+rm *
+cd ..
+
+cd result_testing
+rm *.png
+rm *.log
+rm *.json
+cd ..
+
+cd result_training
+rm *.png
+rm *.log
+rm *.json
+cd ..
+
+
