@@ -78,9 +78,7 @@ TensorSpatial::TensorSpatial(std::string config_file_name, MotionTensor &motion_
 
   */
 
-
-
-    create(6000, 20);
+    create(0, 0);
     //print();
 }
 

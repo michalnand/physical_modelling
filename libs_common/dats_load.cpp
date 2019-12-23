@@ -84,8 +84,15 @@ void DatsLoad::print()
   std::cout << "columns count " << get_columns_count() << "\n";
   std::cout << "lines count " << get_lines_count() << "\n";
 
+ std::cout << "values modulo : ";
+ for (unsigned int i = 0; i < values_modulo.size(); i++)
+        std::cout << values_modulo[i] << " ";
+ std::cout << "\n\n";
+
   std::cout << "min " << get_min() << "\n";
   std::cout << "max " << get_max() << "\n";
+
+
 
   std::cout << "min ";
   for (unsigned int i = 0; i < get_columns_count(); i++)
